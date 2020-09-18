@@ -1,6 +1,6 @@
 // Unsplash API
 const photoReturnCount = 30;
-const apiKey = 'pQJFxSf90ju5yj3exwaCl7DtSesAMmg_awFQ5HrRkCk';
+const apiKey = '';
 const apiURL = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${photoReturnCount}`;
 
 // DOM Elements
