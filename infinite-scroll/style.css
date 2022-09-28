@@ -35,7 +35,11 @@ h1 {
 }
 
 .image-container {
-    margin: 10px 30%;
+    margin: 10px 14.5%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    align-items: center;
 }
 
 .image-container img {

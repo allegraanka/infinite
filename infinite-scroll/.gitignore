@@ -1,1 +1,2 @@
-.env #This contains secrets, don't store in source control
+#This contains secrets, don't share
+.env

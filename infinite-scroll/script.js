@@ -1,7 +1,8 @@
 // Unsplash API
 const photoReturnCount = 30;
+const portrait = 'portrait';
 const apiKey = 'pQJFxSf90ju5yj3exwaCl7DtSesAMmg_awFQ5HrRkCk';
-const apiURL = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${photoReturnCount}`
+const apiURL = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${photoReturnCount}&orientation=${portrait}`
 
 // DOM Elements
 const imageContainer = document.getElementById('image-container');
@@ -34,18 +35,19 @@ function displayPhotos() {
     totalImages = unsplashPhotoArr.length;
     // Run this function for each element in the photos array from Unsplash
     unsplashPhotoArr.forEach((photo) => {
+        console.log('photo----->', photo);
         // Create blank anchor tag and set its attributes to the right values
         const item = document.createElement('a');
         setAttributes(item, {
             href: photo.links.html,
-            target: '_blank'
+            target: '_blank',
         });
         // Create blank img element to hold each photo
         const img = document.createElement('img');
         setAttributes(img, {
             src: photo.urls.regular,
             alt: photo.alt_description,
-            title: photo.alt_description
+            title: photo.alt_description,
         });
         // Add listener for when each image has finished loading on the page
         img.addEventListener('load', imageLoaded);
@@ -60,14 +62,14 @@ async function getUnsplashPhotos() {
         const response = await fetch(apiURL);
         unsplashPhotoArr = await response.json();
         displayPhotos();
-    } catch(error) {
+    } catch (error) {
         console.log('There was an error getting photos.', error);
     }
 }
 
 // Scroll monitor
 window.addEventListener('scroll', () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight-1000 && ready) {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
         ready = false;
         getUnsplashPhotos();
     }
